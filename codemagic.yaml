@@ -55,7 +55,7 @@ workflows:
           #cordova prepare ios --buildFlag=-UseModernBuildSystem=0
           cordova build ios --release --device --buildConfig='../build.json' 
     artifacts:
-      - /Users/builder/clone/src-cordova/platforms/ios/build/device/*.ipa
+      - /Users/builder/clone/src-cordova/platforms/ios/build/Release-iphoneos/*.ipa
       - /tmp/xcodebuild_logs/*.log           
 
 
