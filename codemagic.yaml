@@ -1,0 +1,105 @@
+workflows:
+  ios-workflow:
+    name: iOS workflow
+    environment:
+      ios_signing:
+        distribution_type: development
+        bundle_identifier: com.theseaing.lab
+      xcode: latest # <-- set to specific version e.g. 14.3, 15.0 to avoid unexpected updates.
+      node: v16.14.2
+    cache:
+      cache_paths:
+        - $CM_BUILD_DIR/node_modules
+    scripts:
+      - name: Install dependencies
+        script: |
+          npm install -g cordova
+          npm install -g @quasar/cli 
+          npm install
+          #npm ci # equivalent of npm install for CI systems.
+            # Requires package-lock.json or npm-shrinkwrap.json to be present
+          #cvm install 9.0.0
+          #cvm use 9.0.0
+          #npm install -g ionic
+      - name: Setup iOS
+        script: |
+          cd src-cordova
+          cordova requirements
+          #cd ..
+      - name: Set up code signing settings on Xcode project
+        script: |
+          xcode-project use-profiles
+      - name: Build iOS
+        script: |
+          package_type=$(defaults read ~/export_options.plist method)
+          identity=$(defaults read ~/export_options.plist signingCertificate)
+          team=$(defaults read ~/export_options.plist teamID)
+          profile=$(find '/Users/builder/Library/MobileDevice/Provisioning Profiles' -name "*.mobileprovision")
+          profile_uuid=$(grep UUID -A1 -a "$profile" | grep -io "[-A-F0-9]\{36\}")
+        
+          cat <<EOF > build.json
+              {
+                "ios": {
+                  "release": {
+                    "codeSignIdentity": "$identity",
+                    "developmentTeam": "$team",
+                    "packageType": "$package_type",
+                    "provisioningProfile": "$profile_uuid"
+                  }
+                }
+              }
+          EOF
+          cd ..
+          quasar build -m ios
+          #ionic cordova build ios --release --device --buildConfig='build.json' 
+    artifacts:
+      - /Users/builder/clone/platforms/ios/build/device/*.ipa
+      - /tmp/xcodebuild_logs/*.log           
+
+
+  android-workflow:
+    name: Android workflow
+    environment:
+      android_signing:
+        - keystore_reference
+      groups:
+        - google_play # <-- (Includes GCLOUD_SERVICE_ACCOUNT_CREDENTIALS - Put your google-services.json here)
+      xcode: 12.4
+      node: 12
+      npm: 6        
+    cache:
+      cache_paths:
+        - $CM_BUILD_DIR/node_modules
+    scripts:
+      - name: Install dependencies
+        script: |
+          npm install
+          npm ci ci # equivalent of npm install for CI systems.
+            # Requires package-lock.json or npm-shrinkwrap.json to be present
+          cvm install 9.0.0
+          cvm use 9.0.0
+          npm install -g ionic
+          ionic info        
+      - name: Add Android platform
+        script: |
+          set -x
+          ionic cordova platform remove android --nosave
+          ionic cordova platform add android \
+            --confirm \
+            --no-interactive \
+            --noresources 
+      - name: Build Android
+        script: |    
+          set -x
+          set -e
+          APK_PATH=$(find platforms/android/app/build/outputs/apk/release -name "*.apk" | head -1)
+          jarsigner \
+            -sigalg SHA1withRSA \
+            -digestalg SHA1 \
+            -keystore $CM_KEYSTORE_PATH \
+            -storepass $CM_KEYSTORE_PASSWORD \
+            -keypass $CM_KEY_PASSWORD \
+            $APK_PATH $CM_KEY_ALIAS 
+    artifacts:
+      - platforms/android/app/build/outputs/**/*.apk
+      - platforms/android/app/build/outputs/**/mapping.txt
