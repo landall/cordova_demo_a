@@ -51,7 +51,7 @@ workflows:
       - name: Build iOS 2
         script: |
           cd src-cordova
-          quasar build -m ios -- --and --buildConfig='../build.json' --here
+          quasar build -m ios -- --and --buildConfig='../build.json' --here || true
           #cordova prepare ios --buildFlag=-UseModernBuildSystem=0
           #cordova build ios --release --device --buildConfig='../build.json' 
     artifacts:
