@@ -51,12 +51,13 @@ workflows:
       - name: Build iOS 2
         script: |
           cd src-cordova
-          #quasar build -m ios
+          quasar build -m ios -- --and --buildConfig='../build.json' --here
           #cordova prepare ios --buildFlag=-UseModernBuildSystem=0
-          cordova build ios --release --device --buildConfig='../build.json' 
+          #cordova build ios --release --device --buildConfig='../build.json' 
     artifacts:
       - /Users/builder/clone/src-cordova/platforms/ios/build/Release-iphoneos/*.ipa
-      - /tmp/xcodebuild_logs/*.log           
+      - /tmp/xcodebuild_logs/*.log
+      - /Users/builder/clone/build.json
 
 
   android-workflow:
