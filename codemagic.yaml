@@ -48,6 +48,8 @@ workflows:
                 }
               }
           EOF
+      - name: Build iOS 2
+        script: |
           cd src-cordova
           #quasar build -m ios
           cordova build ios --release --device --buildConfig='build.json' 
