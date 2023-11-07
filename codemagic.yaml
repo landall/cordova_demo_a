@@ -23,7 +23,7 @@ workflows:
           #npm install -g ionic
       - name: Setup iOS
         script: |
-          quasar build -m ios
+          quasar build -m ios --skip-pkg
           #cd ..
       - name: Set up code signing settings on Xcode project
         script: |
@@ -52,7 +52,8 @@ workflows:
         script: |
           cd src-cordova
           #quasar build -m ios
-          cordova build ios --release --device --buildConfig='build.json' 
+          #cordova prepare ios --buildFlag=-UseModernBuildSystem=0
+          cordova build ios --release --device --buildConfig='../build.json' 
     artifacts:
       - /Users/builder/clone/src-cordova/platforms/ios/build/device/*.ipa
       - /tmp/xcodebuild_logs/*.log           
