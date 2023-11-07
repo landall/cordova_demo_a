@@ -24,6 +24,9 @@ workflows:
       - name: Setup iOS
         script: |
           cd src-cordova
+          npm install
+          pwd
+          ls -lh
           cordova requirements
           #cd ..
       - name: Set up code signing settings on Xcode project
