@@ -6,7 +6,7 @@ workflows:
         distribution_type: development
         bundle_identifier: com.theseaing.lab
       xcode: latest # <-- set to specific version e.g. 14.3, 15.0 to avoid unexpected updates.
-      node: v16.14.2
+      #node: v16.14.2
     cache:
       cache_paths:
         - $CM_BUILD_DIR/node_modules
@@ -23,12 +23,7 @@ workflows:
           #npm install -g ionic
       - name: Setup iOS
         script: |
-          cd src-cordova
-          cordova platform add ios
-          #npm install
-          pwd
-          ls -lh
-          cordova requirements
+          quasar build -m ios
           #cd ..
       - name: Set up code signing settings on Xcode project
         script: |
@@ -53,11 +48,11 @@ workflows:
                 }
               }
           EOF
-          cd ..
-          quasar build -m ios
-          #ionic cordova build ios --release --device --buildConfig='build.json' 
+          cd src-cordova
+          #quasar build -m ios
+          cordova build ios --release --device --buildConfig='build.json' 
     artifacts:
-      - /Users/builder/clone/platforms/ios/build/device/*.ipa
+      - /Users/builder/clone/src-cordova/platforms/ios/build/device/*.ipa
       - /tmp/xcodebuild_logs/*.log           
 
 
