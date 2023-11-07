@@ -23,7 +23,7 @@ workflows:
           #npm install -g ionic
       - name: Setup iOS
         script: |
-          quasar build -m ios --skip-pkg
+          quasar build -m ios --skip-pkg
           #cd ..
       - name: Set up code signing settings on Xcode project
         script: |
