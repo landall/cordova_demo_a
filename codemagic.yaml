@@ -24,7 +24,8 @@ workflows:
       - name: Setup iOS
         script: |
           cd src-cordova
-          npm install
+          cordova platform add ios
+          #npm install
           pwd
           ls -lh
           cordova requirements
