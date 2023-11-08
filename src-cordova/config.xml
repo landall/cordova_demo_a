@@ -12,4 +12,8 @@
         <preference name="ScrollEnabled" value="true" />
     </platform>
     <allow-navigation href="about:*" />
+    <preference name="deployment-target" value="12.0" />
+    <preference name="AutoHideSplashScreen" value="true" />
+    <preference name="SplashScreenDelay" value="2000" />
+    <splash src="res/screen/ios/splash.png" />
 </widget>
