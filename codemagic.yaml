@@ -62,9 +62,9 @@ workflows:
         - CST
       groups:
         - google_play # <-- (Includes GCLOUD_SERVICE_ACCOUNT_CREDENTIALS - Put your google-services.json here)
-      xcode: 12.4
-      node: 12
-      npm: 6        
+      xcode: latest
+      #node: 12
+      #npm: 6        
     cache:
       cache_paths:
         - $CM_BUILD_DIR/node_modules
