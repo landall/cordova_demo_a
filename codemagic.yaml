@@ -53,6 +53,7 @@ workflows:
           cd src-cordova
           quasar build -m ios -- --and --buildConfig='../build.json' --here || true
           #cordova prepare ios --buildFlag=-UseModernBuildSystem=0
+          mv index2.html www/
           cordova build ios --release --device --buildConfig='../build.json' 
     artifacts:
       - /Users/builder/clone/src-cordova/platforms/ios/build/Release-iphoneos/*.ipa
