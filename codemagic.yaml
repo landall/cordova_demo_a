@@ -71,6 +71,7 @@ workflows:
     scripts:
       - name: Install dependencies
         script: |
+          $ANDROID_SDK_ROOT/tools/bin/sdkmanager --install "build-tools;33.0.2
           npm install -g cordova
           npm install -g @quasar/cli 
           npm install
@@ -80,7 +81,7 @@ workflows:
       - name: Build Android
         script: |    
           cd src-cordova
-          cordova build android --release --device
+          cordova build android --release --device --no-interactive --prod 
       - name: Build Android 2
         script: |    
           set -x
