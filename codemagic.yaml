@@ -80,6 +80,9 @@ workflows:
       - name: Build Android
         script: |    
           cordova build android --release --device
+      - name: Build Android 2
+        script: |    
+          cd src-cordova
           set -x
           set -e
           APK_PATH=$(find platforms/android/app/build/outputs/apk/release -name "*.apk" | head -1)
