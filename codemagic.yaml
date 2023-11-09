@@ -16,15 +16,9 @@ workflows:
           npm install -g cordova
           npm install -g @quasar/cli 
           npm install
-          #npm ci # equivalent of npm install for CI systems.
-            # Requires package-lock.json or npm-shrinkwrap.json to be present
-          #cvm install 9.0.0
-          #cvm use 9.0.0
-          #npm install -g ionic
       - name: Setup iOS
         script: |
           quasar build -m ios --skip-pkg
-          #cd ..
       - name: Set up code signing settings on Xcode project
         script: |
           xcode-project use-profiles
@@ -77,23 +71,15 @@ workflows:
     scripts:
       - name: Install dependencies
         script: |
+          npm install -g cordova
+          npm install -g @quasar/cli 
           npm install
-          npm ci ci # equivalent of npm install for CI systems.
-            # Requires package-lock.json or npm-shrinkwrap.json to be present
-          cvm install 9.0.0
-          cvm use 9.0.0
-          npm install -g ionic
-          ionic info        
       - name: Add Android platform
         script: |
-          set -x
-          ionic cordova platform remove android --nosave
-          ionic cordova platform add android \
-            --confirm \
-            --no-interactive \
-            --noresources 
+          quasar build -m ios --skip-pkg
       - name: Build Android
         script: |    
+          cordova build android --release --device
           set -x
           set -e
           APK_PATH=$(find platforms/android/app/build/outputs/apk/release -name "*.apk" | head -1)
