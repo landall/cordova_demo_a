@@ -87,7 +87,7 @@ workflows:
         script: |    
           set -x
           set -e
-          ls platforms/android/app/build/outputs/bundle/release -lh
+          tree platforms/android/app/build/outputs/
           android-app-bundle build-universal-apk \
             --bundle 'platforms/android/app/build/outputs/bundle/release/app-release.aab' \
             --ks $CM_KEYSTORE_PATH \
