@@ -71,6 +71,7 @@ workflows:
     scripts:
       - name: Install dependencies
         script: |
+          export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
           $ANDROID_SDK_ROOT/tools/bin/sdkmanager --install "build-tools;33.0.2"
           npm install -g cordova
           npm install -g @quasar/cli 
