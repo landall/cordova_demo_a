@@ -65,14 +65,14 @@ workflows:
       xcode: latest
       #node: 12
       #npm: 6
-      java: 1.8
+      #java: 1.8
     cache:
       cache_paths:
         - $CM_BUILD_DIR/node_modules
     scripts:
       - name: Install dependencies
         script: |
-          #export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+          export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
           $ANDROID_SDK_ROOT/tools/bin/sdkmanager --install "build-tools;33.0.2"
           npm install -g cordova
           npm install -g @quasar/cli 
