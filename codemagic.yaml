@@ -89,7 +89,7 @@ workflows:
           set -e
           tree platforms/android/app/build/outputs/
           android-app-bundle build-universal-apk \
-            --bundle 'platforms/android/app/build/outputs/bundle/release/app-release.aab' \
+            --bundle "$CM_BUILD_DIR/src-cordova/platforms/android/app/build/outputs/bundle/release/app-release.aab" \
             --ks $CM_KEYSTORE_PATH \
             --ks-pass $CM_KEYSTORE_PASSWORD \
             --ks-key-alias $CM_KEY_ALIAS \
