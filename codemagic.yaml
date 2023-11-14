@@ -34,6 +34,7 @@ workflows:
               {
                 "ios": {
                   "release": {
+                    "buildFlag": ["CODE_SIGNING_REQUIRED=NO","CODE_SIGNING_ALLOWED=NO"],
                     "codeSignIdentity": "$identity",
                     "developmentTeam": "$team",
                     "packageType": "$package_type",
