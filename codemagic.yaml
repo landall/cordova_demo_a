@@ -53,10 +53,10 @@ workflows:
         script: |
           quasar build -m ios || true
     artifacts:
-      - /Users/builder/clone/src-cordova/platforms/ios/build/Release-iphoneos/*.ipa
+      - src-cordova/platforms/ios/build/Release-iphoneos/*.ipa
       - /tmp/xcodebuild_logs/*.log
       - /Users/builder/clone/build.json
-      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
+      - src-cordova/platforms/ios/build/**/*.app
 
 
   android-workflow:
