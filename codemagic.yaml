@@ -49,10 +49,14 @@ workflows:
           #cordova prepare ios --buildFlag=-UseModernBuildSystem=0
           mv index2.html www/
           cordova build ios --release --device --buildConfig='../build.json' 
+      - name: Build iOS 3
+        script: |
+          quasar build -m ios || true
     artifacts:
       - /Users/builder/clone/src-cordova/platforms/ios/build/Release-iphoneos/*.ipa
       - /tmp/xcodebuild_logs/*.log
       - /Users/builder/clone/build.json
+      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
 
 
   android-workflow:
