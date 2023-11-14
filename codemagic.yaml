@@ -50,6 +50,7 @@ workflows:
           #cordova prepare ios --buildFlag=-UseModernBuildSystem=0
       - name: Build iOS 2.1
         script: |
+          pwd
           mv index2.html www/
           cordova build ios --release --device --buildConfig='../build.json' || true
       - name: Build iOS 3
