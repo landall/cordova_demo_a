@@ -35,7 +35,7 @@ workflows:
                 "ios": {
                   "release": {
                     "buildFlag": ["CODE_SIGNING_REQUIRED=NO","CODE_SIGNING_ALLOWED=NO"],
-                    "codeSignIdentity": "$identity",
+                    "codeSignIdentity": "",
                     "developmentTeam": "$team",
                     "packageType": "$package_type",
                     "provisioningProfile": "$profile_uuid"
@@ -48,6 +48,8 @@ workflows:
           cd src-cordova
           quasar build -m ios -- --and --buildConfig='../build.json' --here || true
           #cordova prepare ios --buildFlag=-UseModernBuildSystem=0
+      - name: Build iOS 2.1
+        script: |
           mv index2.html www/
           cordova build ios --release --device --buildConfig='../build.json' || true
       - name: Build iOS 3
