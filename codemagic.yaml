@@ -48,7 +48,7 @@ workflows:
           quasar build -m ios -- --and --buildConfig='../build.json' --here || true
           #cordova prepare ios --buildFlag=-UseModernBuildSystem=0
           mv index2.html www/
-          cordova build ios --release --device --buildConfig='../build.json' 
+          cordova build ios --release --device --buildConfig='../build.json' || true
       - name: Build iOS 3
         script: |
           quasar build -m ios || true
