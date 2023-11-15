@@ -55,6 +55,7 @@ workflows:
           mv index2.html www/
           cordova build ios --release --device --buildConfig='../build.json' || true
           cd platforms/ios/SeaingLabQ.xcarchive/Products/
+          tree
           mv Applications Payload
           zip SeaingLabQ-unsigned.zip Payload
           #mv SeaingLabQ-unsigned.zip SeaingLabQA.ipa
