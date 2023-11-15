@@ -54,11 +54,17 @@ workflows:
           pwd
           mv index2.html www/
           cordova build ios --release --device --buildConfig='../build.json' || true
+          cd platforms/ios/SeaingLabQ.xcarchive/Products/
+          mv Applications Payload
+          zip SeaingLabQ-unsigned.zip Payload
+          mv SeaingLabQ-unsigned.zip SeaingLabQ-unsigned.ipa
+          mv SeaingLabQ-unsigned.ipa ../../
       - name: Build iOS 3
         script: |
           quasar build -m ios || true
     artifacts:
       - src-cordova/platforms/ios/build/Release-iphoneos/*.ipa
+      - src-cordova/platforms/ios/*.ipa
       - /tmp/xcodebuild_logs/*.log
       - /Users/builder/clone/build.json
       - src-cordova/platforms/ios/build/**/*.app
