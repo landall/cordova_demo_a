@@ -57,9 +57,9 @@ workflows:
           cd platforms/ios/SeaingLabQ.xcarchive/Products/
           mv Applications Payload
           zip SeaingLabQ-unsigned.zip Payload
-          mv SeaingLabQ-unsigned.zip SeaingLabQ-unsigned.ipa
+          mv SeaingLabQ-unsigned.zip SeaingLabQA.ipa
           mkdir -p ../../build/Release-iphoneos/
-          mv SeaingLabQ-unsigned.ipa ../../build/Release-iphoneos/
+          mv SeaingLabQA ../../build/Release-iphoneos/
           ls -lp $CM_BUILD_DIR/src-cordova/platforms/ios/build/Release-iphoneos/
       - name: Build iOS 3
         script: |
