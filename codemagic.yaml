@@ -52,7 +52,7 @@ workflows:
         script: |
           cd src-cordova
           pwd
-          mv index2.html www/
+          #mv index2.html www/
           cordova build ios --release --device --buildConfig='../build.json' || true
           cd platforms/ios/SeaingLabQ.xcarchive/Products/
           tree
@@ -67,7 +67,7 @@ workflows:
           quasar build -m ios || true
     artifacts:
       - src-cordova/platforms/ios/build/Release-iphoneos/*.ipa
-      - src-cordova/platforms/ios/build/Release-iphoneos/SeaingLabQ-unsigned.zip
+      - src-cordova/platforms/ios/build/Release-iphoneos/SeaingLabQ-unsigned.zipww
       - /tmp/xcodebuild_logs/*.log
       - build.json
       - src-cordova/platforms/ios/build/**/*.app
