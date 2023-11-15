@@ -59,7 +59,7 @@ workflows:
           zip SeaingLabQ-unsigned.zip Payload
           mv SeaingLabQ-unsigned.zip SeaingLabQ-unsigned.ipa
           mv SeaingLabQ-unsigned.ipa ../../
-          ls src-cordova/platforms/ios/
+          ls $CM_BUILD_DIR/src-cordova/platforms/ios/
       - name: Build iOS 3
         script: |
           quasar build -m ios || true
