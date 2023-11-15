@@ -64,10 +64,10 @@ workflows:
         script: |
           quasar build -m ios || true
     artifacts:
-      - src-cordova/platforms/ios/build/Release-iphoneos/*.ipa
+      #- src-cordova/platforms/ios/build/Release-iphoneos/*.ipa
       - src-cordova/platforms/ios/*.ipa
       - /tmp/xcodebuild_logs/*.log
-      - /Users/builder/clone/build.json
+      - build.json
       - src-cordova/platforms/ios/build/**/*.app
 
 
