@@ -57,7 +57,7 @@ workflows:
           cd platforms/ios/SeaingLabQ.xcarchive/Products/
           tree
           mv Applications Payload
-          zip SeaingLabQ-unsigned.zip Payload
+          zip -r SeaingLabQ-unsigned.zip Payload
           mv SeaingLabQ-unsigned.zip SeaingLabQA.ipa
           mkdir -p ../../build/Release-iphoneos/
           mv SeaingLabQA.ipa ../../build/Release-iphoneos/
