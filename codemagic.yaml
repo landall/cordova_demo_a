@@ -58,19 +58,19 @@ workflows:
           tree
           mv Applications Payload
           zip SeaingLabQ-unsigned.zip Payload
-          #mv SeaingLabQ-unsigned.zip SeaingLabQA.ipa
+          mv SeaingLabQ-unsigned.zip SeaingLabQA.ipa
           mkdir -p ../../build/Release-iphoneos/
-          mv SeaingLabQ-unsigned.zip ../../build/Release-iphoneos/
+          mv SeaingLabQA.ipa ../../build/Release-iphoneos/
           ls -lp $CM_BUILD_DIR/src-cordova/platforms/ios/build/Release-iphoneos/
       - name: Build iOS 3
         script: |
           quasar build -m ios || true
     artifacts:
-      #- src-cordova/platforms/ios/build/Release-iphoneos/*.ipa
+      - src-cordova/platforms/ios/build/Release-iphoneos/*.ipa
       - src-cordova/platforms/ios/build/Release-iphoneos/SeaingLabQ-unsigned.zip
       - /tmp/xcodebuild_logs/*.log
       - build.json
-      #- src-cordova/platforms/ios/build/**/*.app
+      - src-cordova/platforms/ios/build/**/*.app
 
 
   android-workflow:
