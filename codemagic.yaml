@@ -68,7 +68,7 @@ workflows:
       - src-cordova/platforms/ios/build/Release-iphoneos/*.ipa
       - /tmp/xcodebuild_logs/*.log
       - build.json
-      - src-cordova/platforms/ios/build/**/*.app
+      #- src-cordova/platforms/ios/build/**/*.app
 
 
   android-workflow:
